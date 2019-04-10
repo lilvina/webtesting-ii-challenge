@@ -20,7 +20,7 @@ describe('<App />', () => {
 
     const button = getByText("ball")
     fireEvent.click(button)
-    getByText("ball: 1")
+    getByText("1")
   })
 
   it('should ball out at 4 balls', () => {
@@ -30,7 +30,7 @@ describe('<App />', () => {
     fireEvent.click(button)
     fireEvent.click(button)
     fireEvent.click(button)
-    getByText("ball: 0")
+    getByText("0")
   })
 
   it('should add a strike', () => {
@@ -38,7 +38,7 @@ describe('<App />', () => {
     const button = getByText("strike")
 
     fireEvent.click(button)
-    getByText("strike: 1")
+    getByText("1")
   })
 
   it('should hit 3 strikes', () => {
@@ -47,7 +47,7 @@ describe('<App />', () => {
 
     fireEvent.click(button)
     fireEvent.click(button)
-    getByText("strike: 0")
+    getByText("0")
   })
 
   it('should add a foul', () => {
@@ -55,22 +55,24 @@ describe('<App />', () => {
     const button = getByText("foul")
 
     fireEvent.click(button)
-    getByText("foul: 1")
-  })
-
-  it('should add 2 fouls', () => {
-    const { getByText } = render(<App />)
-    const button = getByText("foul")
-
-    fireEvent.click(button)
-    fireEvent.click(button)
-    getByText("foul: 0")
+    getByText("1")
   })
 
   it('should stop at 2 fouls', () => {
     const { getByText } = render(<App />)
+    const button = getByText('foul')
 
-    getByText('strike: 2')
+    fireEvent.click(button)
+    fireEvent.click(button)
+    fireEvent.click(button)
+    fireEvent.click(button)
+    getByText('2')
+  })
+
+  it('should stop strikes at 2 with fouls', () => {
+    const {getByText} = render(<App />)
+
+    getByText("2")
   })
 
   it('should add a hit', () => {
@@ -78,15 +80,15 @@ describe('<App />', () => {
 
     const button = getByText("hit")
     fireEvent.click(button)
-    getByText("hit: 1")
+    getByText("1")
   })
 
   it('should reset values to 0', () => {
     const { getByText } = render(<App />)
 
-    getByText("strike: 0")
-    getByText("ball: 0")
-    getByText("foul: 0")
+    getByText("0")
+    getByText("0")
+    getByText("0")
   })
 
 })
